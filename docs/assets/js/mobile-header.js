@@ -8,8 +8,11 @@ $(document).ready(() => {
     const breadcrumbsWrapper = $('.js-mobile-header-breadcrumbs')
     const breadcrumbArrow = $('.js-mobile-header-breadcrumb-arrow')
     const dropDownNavigation = $('.js-mobile-header-drop-down-navigation')
+    const headerLogo = $('.js-header-logo')
+    const headerContent = $('.js-header-content')
+    const algoliaAutocomplete = $('.js-dialtone-search').parent()
 
-    toggleDropDown()
+  toggleDropDown()
     toggleDropDownNavigation()
 
     const toggleButtons = (showButtonClose = false) => {
@@ -20,11 +23,19 @@ $(document).ready(() => {
 
     const showInputSearch = () => {
         inputSearchWrapper.removeClass('md:d-d-none')
+        inputSearchWrapper.addClass('md:d-w100p')
+        algoliaAutocomplete.addClass('md:d-w100p')
+        headerLogo.addClass('md:d-d-none')
+        headerContent.addClass('md:d-ml0 md:d-w100p md:d-jc-space-between')
         toggleButtons(true)
     }
 
     const hideInputSearch = () => {
         inputSearchWrapper.addClass('md:d-d-none')
+        inputSearchWrapper.removeClass('md:d-w100p')
+        algoliaAutocomplete.removeClass('md:d-w100p')
+        headerLogo.removeClass('md:d-d-none')
+        headerContent.removeClass('md:d-ml0 md:d-w100p md:d-jc-space-between')
     }
 
 
@@ -69,4 +80,8 @@ $(document).ready(() => {
         dropDownNavigation.css('top', navigationHeader.outerHeight() + breadcrumbsWrapper.outerHeight())
         dropDownNavigation.toggleClass('d-o0', opacity)
         dropDownNavigation.toggleClass('d-py24', !!height)
-        dropDownNavigation.toggleClass('d-px16', !!h
+        dropDownNavigation.toggleClass('d-px16', !!height)
+        $('body').toggleClass('md:d-ps-fixed', !!height)
+        $('.js-navigation-header').css('width', !!height ? '100vw' : '100%')
+    }
+})

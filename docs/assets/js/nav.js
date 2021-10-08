@@ -112,7 +112,9 @@ $(document).ready(function() {
         var windowTop = $(window).scrollTop();
         calcSideNavPosition();
 
-        if (windowTop > 64) {
+        if(window.innerWidth <= 640) {
+          navHeader.removeClass('d-bs-lg d-bc-white').addClass('d-bc-black-100');
+        } else if (windowTop > 64) {
           navHeader.addClass('d-bs-lg d-bc-white').removeClass('d-bc-black-100');
         } else {
           navHeader.removeClass('d-bs-lg d-bc-white').addClass('d-bc-black-100');

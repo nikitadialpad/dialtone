@@ -5,7 +5,7 @@ const sections = require("./_data/site-nav.json").sections
 const alignAvailablePages = sections => sections.map(section => section.subsections
     ? alignAvailablePages(section.subsections)
     : section.pages
-).flat(2)
+).flat(Infinity)
 
 const getAvailablePages = sections => alignAvailablePages(sections)
     .reduce((pages, page) => ({
@@ -176,7 +176,7 @@ module.exports = function(eleventyConfig) {
             return breadcrumbs
         }, [])
 
-        return options.reduce((links, option, i) => {
+        return options.reduce((links, option) => {
             const tag = option.disabled ? 'span' : 'a'
             const selectedClass = option.selected
                 ? 'd-breadcrumbs__item--selected'
@@ -184,10 +184,10 @@ module.exports = function(eleventyConfig) {
 
             return  `
             ${links}
-            <li class="d-breadcrumbs__item">
+            <li class="d-breadcrumbs__item ${selectedClass}">
                 <${tag}
                     href="${option.path}"
-                    class="d-link d-link--muted d-breadcrumbs__item ${selectedClass}"
+                    class="${tag === 'a' ? 'd-link d-link--muted' : ''} d-tt-capitalize"
                     aria-current="location"
                 >
                     ${option.name}
