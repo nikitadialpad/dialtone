@@ -34,9 +34,11 @@ $(document).ready(function() {
             'nav': $(document).find('#nav').html(),
             'content': $(document).find('#content').html(),
             'subnav': $(document).find('#subnav').html(),
+            'mobile-nav': $(document).find('#mobile-nav').html(),
         }, '', window.location.href),
 
-        $('#nav').on('click', 'a', function (event) {
+        $('#nav,#mobile-nav').on('click', 'a', function (event) {
+
             // Allow opening links in new tabs
             if (event.metaKey) {
               return
@@ -62,6 +64,7 @@ $(document).ready(function() {
                 var content = $(html).find('#content').html()
                 var subnav = $(html).find('#subnav').html()
                 const breadcrumbs = $(html).find('#breadcrumbs').html()
+                const mobileNav = $(html).find('#mobile-nav').html()
 
                 // Destroy scrollSpy
                 $('.js-scrollspy').scrollSpy('destroy');
@@ -72,6 +75,7 @@ $(document).ready(function() {
                 $('#content').html(content)
                 $('#subnav').html(subnav)
                 $('#breadcrumbs').html(breadcrumbs)
+                $('#mobile-nav').html(mobileNav)
 
                 // Scroll to the top of the page
                 $(document).scrollTop(0)
@@ -83,13 +87,12 @@ $(document).ready(function() {
                     'href': href,
                     'title': title,
                     'nav': $(html).find('#nav').html(),
+                    'mobile-nav': $(html).find('#mobile-nav').html(),
                     'content': $(html).find('#content').html(),
                 }, '', href)
 
                 //  Re-initiate ScrollSpy
                 $('.js-scrollspy').scrollSpy();
-                $('.js-navigation-header').attr('style', '');
-                $('.js-dialtone5-banner').removeClass('d-d-none');
             })
         })
 
@@ -100,6 +103,7 @@ $(document).ready(function() {
                 $('#nav').html(e.state.nav)
                 $('#content').html(e.state.content)
                 $('#subnav').html(e.state.subnav)
+                $('#mobile-nav').html(e.state['mobile-nav'])
             }
         }
     });
