@@ -1,0 +1,110 @@
+// Import dialtone style definitions as references globally so they can be used in
+// mixins. See: https://dialpad.design
+@import '~@dialpad/dialtone/lib/build/less/dialtone.less';
+
+// Fonts path override
+#d-internal-config {
+  @define-font-path: "../../../dist/fonts/";
+}
+@define-font-name: "Inter";
+
+// Reset base font size to 12px.
+:root {
+  --base--font-size: @fs12;
+}
+
+// define styles for markdown
+.markdown {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &[id] {
+      .d-fl1();
+      .d-pe-auto();
+      //.d-ps-relative();
+
+      //a {
+      //  float: right;
+      //}
+
+      .d-btn {
+        float: right;
+        margin-left: 60px;
+      }
+
+      .d-btn__icon {
+        height: 16px;
+        width: 16px;
+        //background: url('~@dialpad/dialtone/lib/build/svg/system/link.svg') no-repeat;
+        background: url('static/icon.svg') no-repeat;
+        right: 10px;
+        top: 10px;
+      }
+
+      &::before{
+        content: '';
+        display: block;
+        height:      70px;
+        margin-top: -70px;
+        visibility: hidden;
+      }
+    }
+  }
+
+  h1 {
+    .d-headline42();
+    .d-lh6();
+    .d-mb4();
+
+    + p {
+      .d-fs20();
+      .d-lh6();
+
+      margin-bottom: 6.4rem;
+    }
+  }
+
+  h2 {
+    .d-headline24();
+    margin-bottom: 1.6rem;
+  }
+
+  h3 {
+    .d-fs20();
+    font-weight: @headline-weight !important;
+  }
+}
+
+.d-ga-toc {
+  grid-area: toc !important;
+}
+.d-gl-docsite {
+  grid-column-gap: 4.8rem;
+  grid-column-gap: 4.8rem;
+  grid-template-areas: "sidebar content";
+  grid-template-columns: [sidebar] 21.6rem [content] minmax(32rem, 75rem);
+  -webkit-column-gap: 4.8rem;
+  -moz-column-gap: 4.8rem;
+  column-gap: 4.8rem;
+}
+.d-gl-docsite-toc {
+  grid-column-gap: 4.8rem;
+  grid-column-gap: 4.8rem;
+  grid-template-areas: "sidebar content toc";
+  grid-template-columns: [sidebar] 21.6rem [content] minmax(32rem, 75rem) [toc] minmax(-webkit-min-content, 21.6rem);
+  grid-template-columns: [sidebar] 21.6rem [content] minmax(32rem, 75rem) [toc] minmax(min-content, 21.6rem);
+  -webkit-column-gap: 4.8rem;
+  -moz-column-gap: 4.8rem;
+  column-gap: 4.8rem;
+}
+.d-gl-docsite-icons {
+  --icon-card-width: 12rem;
+  --icon-grid-columns: auto-fit;
+  display: grid;
+  grid-auto-rows: 12rem;
+  grid-gap: 0.2rem;
+  grid-template-columns: repeat(var(--icon-grid-columns), [col] var(--icon-card-width));
+}
